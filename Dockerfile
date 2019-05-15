@@ -10,6 +10,6 @@ ENTRYPOINT ["php", "service.php"]
 #RUN pecl install -o -f redis && rm -rf /tmp/pear && docker-php-ext-enable redis
 
 RUN apk update
-RUN apk add wget postgresql-dev autoconf
+RUN apk add wget postgresql-dev autoconf gcc
 RUN docker-php-ext-install pcntl pdo pdo_pgsql sockets bcmath
 RUN pecl install -o -f redis && rm -rf /tmp/pear && docker-php-ext-enable redis
