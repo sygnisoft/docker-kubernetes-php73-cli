@@ -9,7 +9,8 @@ ENTRYPOINT ["php", "service.php"]
 #RUN docker-php-ext-install pcntl pdo pdo_pgsql sockets bcmath
 #RUN pecl install -o -f redis && rm -rf /tmp/pear && docker-php-ext-enable redis
 
-RUN apk update
-RUN apk add wget postgresql-dev autoconf g++
-RUN docker-php-ext-install pcntl pdo pdo_pgsql sockets bcmath
-RUN pecl install -o -f redis && rm -rf /tmp/pear && docker-php-ext-enable redis
+RUN apk update \
+ && apk add wget postgresql-dev autoconf g++ make \
+ && docker-php-ext-install pcntl pdo pdo_pgsql sockets bcmath \
+ && pecl install -o -f redis && rm -rf /tmp/pear && docker-php-ext-enable redis \
+ && apk del postgresql-dev autoconf g++ make
