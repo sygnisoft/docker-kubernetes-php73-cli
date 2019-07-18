@@ -12,6 +12,6 @@ ENTRYPOINT ["php", "service.php"]
 
 RUN apk update \
  && apk add wget postgresql-dev autoconf g++ make \
- && docker-php-ext-install pcntl pdo pdo_pgsql sockets bcmath \
+ && docker-php-ext-install pcntl pdo pdo_pgsql sockets bcmath gmp \
  && pecl install -o -f redis && rm -rf /tmp/pear && docker-php-ext-enable redis \
  && apk del autoconf g++ make
